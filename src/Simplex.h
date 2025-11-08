@@ -5,6 +5,7 @@
 #pragma once
 
 #include "Simplex/Core.h"
+#include "Simplex/Log.h"
 
 #include "Simplex/Application.h"
 

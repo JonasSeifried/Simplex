@@ -9,6 +9,9 @@
 extern Simplex::Application* CreateApplication();
 
 int main(int argc, char** argv) {
+    Simplex::Log::Init();
+    SX_CORE_WARN("Initialized Log!");
+    SX_INFO("Hello");
     const auto app = Simplex::CreateApplication();
     app->Run();
     delete app;
