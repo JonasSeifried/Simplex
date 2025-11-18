@@ -3,10 +3,15 @@
 //
 
 #pragma once
-#include "include/simplex/export.h"
+
+#include "Simplex/Core.h"
+#include "Window.h"
 
 namespace Simplex {
     class SIMPLEX_EXPORT Application {
+    private:
+        std::unique_ptr<Window> m_Window;
+        bool m_Running = true;
     public:
         Application();
         virtual ~Application();

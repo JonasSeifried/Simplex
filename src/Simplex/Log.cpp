@@ -3,9 +3,8 @@
 //
 
 #include "Log.h"
+#include "sxpch.h"
 
-#include "spdlog/spdlog.h"
-#include "spdlog/sinks/stdout_color_sinks-inl.h"
 
 namespace Simplex {
 

@@ -4,10 +4,8 @@
 
 #pragma once
 
-#include <memory>
-
-#include "include/simplex/export.h"
-#include "spdlog/logger.h"
+#include "Simplex/Core.h"
+#include  "sxpch.h"
 
 namespace Simplex {
     class SIMPLEX_EXPORT Log {

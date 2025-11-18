@@ -13,6 +13,21 @@ FetchContent_Declare(
 
 FetchContent_MakeAvailable(spdlog)
 
+FetchContent_Declare(
+        glfw
+        GIT_REPOSITORY https://github.com/glfw/glfw.git
+        GIT_TAG        3.4
+)
+
+set(GLFW_BUILD_DOCS OFF CACHE BOOL "" FORCE)
+set(GLFW_BUILD_TESTS OFF CACHE BOOL "" FORCE)
+set(GLFW_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
+
+FetchContent_MakeAvailable(glfw)
+
+find_package(OpenGL REQUIRED)
+
+
 add_library(Simplex SHARED
         src/Simplex/Core.h
         src/Simplex/Application.cpp
@@ -20,9 +35,32 @@ add_library(Simplex SHARED
         src/Simplex/EntryPoint.h
         src/Simplex.h
         src/Simplex/Log.cpp
-        src/Simplex/Log.h)
+        src/Simplex/Log.h
+        src/Simplex/Events/ApplicationEvent.h
+        src/Simplex/Events/Event.h
+        src/Simplex/Events/KeyEvent.h
+        src/Simplex/Events/MouseEvent.h
+        src/Simplex/Window.h
+        src/Platform/MacOS/MacOSWindow.cpp
+        src/Platform/MacOS/MacOSWindow.h
+)
 
-target_link_libraries(Simplex PUBLIC spdlog::spdlog)
+target_precompile_headers(Simplex PRIVATE
+        src/sxpch.h
+)
+
+target_link_libraries(Simplex
+        PUBLIC
+            spdlog::spdlog
+        PRIVATE
+            glfw
+            OpenGL::GL
+)
+
+target_compile_definitions(Simplex
+        PRIVATE
+        GL_SILENCE_DEPRECATION
+)
 
 
 target_include_directories(Simplex PUBLIC
